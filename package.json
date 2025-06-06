@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@heroui/react": "^2.7.9",
     "axios": "^1.9.0",
+    "framer-motion": "^12.16.0",
     "my-react-app": "file:",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
