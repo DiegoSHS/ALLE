@@ -7,7 +7,7 @@ export function StockCard() {
                 <Image
                     className="w-full object-cover h-[140px]"
                     alt="Imagen de stock"
-                    src="/stock-image.png"
+                    src="/mujer.jpg"
                     radius="lg"
                     shadow="sm"
                     width="100%"

@@ -1,14 +1,13 @@
-import './App.css'
-import { StockCard } from './features/stock'
-import { QrCard } from './features/codescanner'
+import { Route, Routes } from "react-router-dom";
+
+import IndexPage from "@/pages/index";
 
 function App() {
   return (
-    <>
-      <StockCard />
-      <QrCard />
-    </>
-  )
+    <Routes>
+      <Route element={<IndexPage />} path="/" />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
