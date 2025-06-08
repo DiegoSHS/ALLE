@@ -1,4 +1,4 @@
-import { Button, Card, card, CardFooter, Image } from "@heroui/react";
+import { Button, Card, CardFooter, Image } from "@heroui/react";
 
 export function QrCard() {
     return (
