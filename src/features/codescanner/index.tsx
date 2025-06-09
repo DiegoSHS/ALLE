@@ -1,5 +1,6 @@
-import { Button, Card, CardFooter, Image } from "@heroui/react";
+import { Alert, Button, Card, CardFooter, Image } from "@heroui/react";
 import { IDetectedBarcode, Scanner } from "@yudiel/react-qr-scanner";
+import { useState } from "react";
 
 export function QrCard() {
     return (
@@ -32,10 +33,39 @@ export function QrCard() {
 }
 
 export function QrScanner() {
+    const [error, setError] = useState<null | string>(null);
     const onScan = (result: IDetectedBarcode[]) => {
         console.log(`QR Code scanned: ${result}`);
     }
+    const onError = () => {
+        setError("Acceso a la cámara denegado. Por favor, permite el acceso a la cámara.")
+    }
     return (
-        <Scanner onScan={onScan} />
+        <div>
+            {error && (
+                <Button
+                    className="mb-4"
+                    color="danger"
+                    onPress={async () => {
+                        const constraints = await navigator.mediaDevices.getUserMedia({ video: true })
+                        const tracks = constraints.getTracks()
+                        const results = tracks.map((track) => {
+                            track.stop();
+                            return track.readyState === "ended" ? false : true;
+                        })
+                        if (results.every((result) => result === true)) {
+                            setError(null);
+                        } else {
+                            setError("Acceso a la cámara denegado. Por favor, permite el acceso a la cámara.")
+                        }
+                    }
+                    }
+                >
+                    Permitir acceso a la cámara
+                </Button>
+            )
+            }
+            <Scanner onScan={onScan} onError={onError} />
+        </div >
     )
 }
