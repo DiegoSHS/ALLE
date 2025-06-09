@@ -4,6 +4,7 @@ import IndexPage from "@/pages/index";
 import { StockPage } from "./pages/stock";
 import { QrPage } from "./pages/qrvisor";
 import { QrScanner } from "./features/codescanner";
+import { QrGenerator } from "./features/qrgenerator";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route element={<QrScanner />} path="/scan" />
       <Route element={<StockPage />} path="/stock" />
       <Route element={<QrPage></QrPage>} path="/qr"></Route>
+      <Route element={<QrGenerator></QrGenerator>} path="/gene"></Route>
     </Routes>
   );
 }
