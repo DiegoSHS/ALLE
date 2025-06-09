@@ -1,5 +1,5 @@
 import { Button, Card, CardFooter, Image } from "@heroui/react";
-import { px } from "framer-motion";
+import { IDetectedBarcode, Scanner } from "@yudiel/react-qr-scanner";
 
 export function QrCard() {
     return (
@@ -29,6 +29,13 @@ export function QrCard() {
             </CardFooter>
         </Card>
     )
+}
 
-
+export function QrScanner() {
+    const onScan = (result: IDetectedBarcode[]) => {
+        console.log(`QR Code scanned: ${result}`);
+    }
+    return (
+        <Scanner onScan={onScan} />
+    )
 }
