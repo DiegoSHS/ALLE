@@ -2,12 +2,14 @@ import { Route, Routes } from "react-router-dom";
 
 import IndexPage from "@/pages/index";
 import { QrPage } from "./pages/qrvisor";
+import { QrGenerator } from "./features/qrgenerator";
 
 function App() {
   return (
     <Routes>
       <Route element={<IndexPage />} path="/" />
       <Route element={<QrPage></QrPage>} path="/qr"></Route>
+      <Route element={<QrGenerator></QrGenerator>} path="/gene"></Route>
     </Routes>
   );
 }
