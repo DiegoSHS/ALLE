@@ -1,10 +1,18 @@
+import { QrItem } from "@/pages/qrvisor";
 import { Alert, Button, Card, CardFooter, Image } from "@heroui/react";
 import { IDetectedBarcode, Scanner } from "@yudiel/react-qr-scanner";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export function QrCard() {
+export function QrCard({ description, name, id }: QrItem) {
+
+    const navigate = useNavigate();
+
+    const onPress = () => {
+        navigate(`/qr/${id}`);
+    }
     return (
-        <Card isFooterBlurred isPressable className="border-none" radius="lg">
+        <Card onPress={onPress} isFooterBlurred isPressable className="border-none" radius="lg">
             <Image
                 alt="Woman listing to music"
                 className="object-cover"
@@ -12,7 +20,7 @@ export function QrCard() {
                 width={200}
             />
             <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-0 shadow-small m-1 z-10">
-                <p className="text-tiny text-white/80">Available soon.</p>
+                <p className="text-tiny text-white/80">{name}</p>
                 <div className="flex gap-1">
 
                     <Button isIconOnly className="p-1" color="primary" size="sm">
@@ -67,5 +75,6 @@ export function QrScanner() {
             }
             <Scanner onScan={onScan} onError={onError} />
         </div >
+
     )
 }

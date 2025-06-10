@@ -5,6 +5,7 @@ import { StockPage } from "./pages/stock";
 import { QrPage } from "./pages/qrvisor";
 import { QrScanner } from "./features/codescanner";
 import { QrGenerator } from "./features/qrgenerator";
+import { Dynamicqr } from "./features/codescanner/dynamix";
 
 function App() {
   return (
@@ -14,7 +15,9 @@ function App() {
       <Route element={<StockPage />} path="/stock" />
       <Route element={<QrPage></QrPage>} path="/qr"></Route>
       <Route element={<QrGenerator></QrGenerator>} path="/gene"></Route>
+      <Route element={<Dynamicqr></Dynamicqr>} path="/qr/:id" />
     </Routes>
+
   );
 }
 
