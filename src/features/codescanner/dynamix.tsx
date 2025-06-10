@@ -5,7 +5,7 @@ export function Dynamicqr() {
     console.log("Dynamicqr id:", id)
     return (
         <div>
-            4654564654654654654654654654654654654654
+            tuytodotudusquecruy
         </div>
     )
 }
