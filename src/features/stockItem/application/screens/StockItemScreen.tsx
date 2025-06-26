@@ -1,6 +1,5 @@
 import Table from "@/components/Table";
-import { supabase } from "@/utils/supabaseClient";
-import { useEffect, useState } from "react";
+import { useStockItem } from "../providers/stockItemProvider";
 
 interface StockItem {
     id: number;
@@ -9,17 +8,7 @@ interface StockItem {
 }
 
 const StockItemScreen = () => {
-    const [stockItems, setStockItems] = useState<StockItem[]>([]);
-
-    useEffect(() => {
-        const fetchStockItems = async () => {
-            const { data, error } = await supabase.from("stockItem").select("*");
-            if (error) console.error(error);
-            else setStockItems(data || []);
-        };
-
-        fetchStockItems();
-    }, []);
+    const { state: { items } } = useStockItem();
 
     const columns: { key: keyof StockItem; label: string }[] = [
         { key: "id", label: "ID" },
@@ -30,7 +19,7 @@ const StockItemScreen = () => {
     return (
         <div>
             <h1>Stock Items</h1>
-            <Table data={stockItems} columns={columns} />
+            <Table data={items || []} columns={columns} />
         </div>
     );
 };

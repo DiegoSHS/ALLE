@@ -4,12 +4,6 @@ import { Action, BaseState, useBaseReducer } from "@/utils";
 import { ClientRepositoryImp } from "../../infrastructure/repository/ClientRepositoryImp";
 import { ClientDatasourceImp } from "../../infrastructure/datasources/ClientDatasourceImp";
 
-const clientRepository = new ClientRepositoryImp(new ClientDatasourceImp());
-
-const fetchClients = async () => {
-    return await clientRepository.findAll();
-};
-
 interface ClientContextType {
     state: BaseState<Client>;
     dispatch: React.Dispatch<Action<Client>>;
@@ -20,6 +14,15 @@ const ClientContext = createContext<ClientContextType | undefined>(undefined);
 
 export function ClientProvider({ children }: { children: React.ReactNode }) {
     const { state, dispatch } = useBaseReducer<Client>();
+
+    const clientRepository = new ClientRepositoryImp(new ClientDatasourceImp());
+
+    const fetchClients = async () => {
+        const clients = await clientRepository.findAll();
+        dispatch({ type: "SET", payload: clients });
+        return clients;
+    };
+
     return (
         <ClientContext.Provider value={{ state, dispatch, fetchClients }}>
             {children}

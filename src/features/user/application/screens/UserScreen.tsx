@@ -1,36 +1,20 @@
 import Table from "@/components/Table";
-import { supabase } from "@/utils/supabaseClient";
-import { useEffect, useState } from "react";
-
-interface User {
-    id: number;
-    name: string;
-    email: string;
-}
+import { useUser } from "../providers/userProvider";
+import { User } from "../../domain/entities/User";
 
 const UserScreen = () => {
-    const [users, setUsers] = useState<User[]>([]);
-
-    useEffect(() => {
-        const fetchUsers = async () => {
-            const { data, error } = await supabase.from("user").select("*");
-            if (error) console.error(error);
-            else setUsers(data || []);
-        };
-
-        fetchUsers();
-    }, []);
+    const { state: { items } } = useUser();
 
     const columns: { key: keyof User; label: string }[] = [
         { key: "id", label: "ID" },
         { key: "name", label: "Name" },
-        { key: "email", label: "Email" },
+        { key: "role", label: "Role" },
     ];
 
     return (
         <div>
             <h1>Users</h1>
-            <Table data={users} columns={columns} />
+            <Table data={items || []} columns={columns} />
         </div>
     );
 };

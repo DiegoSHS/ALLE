@@ -1,36 +1,21 @@
 import Table from "@/components/Table";
-import { supabase } from "@/utils/supabaseClient";
-import { useEffect, useState } from "react";
-
-interface Store {
-    id: number;
-    name: string;
-    location: string;
-}
+import { useStore } from "../providers/storeProvider";
+import { Store } from "../../domain/entities/Store";
 
 const StoreScreen = () => {
-    const [stores, setStores] = useState<Store[]>([]);
-
-    useEffect(() => {
-        const fetchStores = async () => {
-            const { data, error } = await supabase.from("store").select("*");
-            if (error) console.error(error);
-            else setStores(data || []);
-        };
-
-        fetchStores();
-    }, []);
+    const { state: { items } } = useStore();
 
     const columns: { key: keyof Store; label: string }[] = [
         { key: "id", label: "ID" },
         { key: "name", label: "Name" },
-        { key: "location", label: "Location" },
+        { key: "address", label: "Address" },
+        { key: "branchId", label: "Branch ID" },
     ];
 
     return (
         <div>
             <h1>Stores</h1>
-            <Table data={stores} columns={columns} />
+            <Table data={items || []} columns={columns} />
         </div>
     );
 };

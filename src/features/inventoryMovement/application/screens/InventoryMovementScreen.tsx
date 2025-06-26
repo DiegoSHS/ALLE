@@ -1,36 +1,24 @@
 import Table from "@/components/Table";
-import { supabase } from "@/utils/supabaseClient";
-import { useEffect, useState } from "react";
-
-interface InventoryMovement {
-    id: number;
-    product: string;
-    movementType: string;
-}
+import { useInventoryMovement } from "../providers/inventoryMovementProvider";
+import { InventoryMovement } from "../../domain/entities/InventoryMovement";
 
 const InventoryMovementScreen = () => {
-    const [inventoryMovements, setInventoryMovements] = useState<InventoryMovement[]>([]);
-
-    useEffect(() => {
-        const fetchInventoryMovements = async () => {
-            const { data, error } = await supabase.from("inventoryMovement").select("*");
-            if (error) console.error(error);
-            else setInventoryMovements(data || []);
-        };
-
-        fetchInventoryMovements();
-    }, []);
+    const { state: { items } } = useInventoryMovement();
 
     const columns: { key: keyof InventoryMovement; label: string }[] = [
         { key: "id", label: "ID" },
-        { key: "product", label: "Product" },
-        { key: "movementType", label: "Movement Type" },
+        { key: "type", label: "Type" },
+        { key: "quantity", label: "Quantity" },
+        { key: "date", label: "Date" },
+        { key: "stockItemId", label: "Stock Item ID" },
+        { key: "storeId", label: "Store ID" },
+        { key: "userId", label: "User ID" },
     ];
 
     return (
         <div>
             <h1>Inventory Movements</h1>
-            <Table data={inventoryMovements} columns={columns} />
+            <Table data={items || []} columns={columns} />
         </div>
     );
 };
