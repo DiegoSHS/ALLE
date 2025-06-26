@@ -1,8 +1,17 @@
+import { Stock } from "@/pages/stock";
 import { Button, Card, CardBody, CardFooter, Image } from "@heroui/react";
+import { useNavigate } from "react-router-dom";
 
-export function StockCard() {
+export function StockCard({ description, name, id }: Stock) {
+
+    const navigate = useNavigate();
+
+    const onPress = () => {
+        navigate(`/stock/${id}`);
+    }
+
     return (
-        <Card isPressable shadow="sm" className="border-none">
+        <Card onPress={onPress} isPressable shadow="sm" className="border-none">
             <CardBody className="overflow-visible p-0">
                 <Image
                     className="w-full object-cover h-[140px]"
@@ -14,7 +23,7 @@ export function StockCard() {
                 />
             </CardBody>
             <CardFooter className="text-small text-default justify-between">
-                <b>Text</b>
+                <b>{name}</b>
                 <div className="flex gap-2">
                     <Button size="sm" color="primary" isIconOnly className="p-1" >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
