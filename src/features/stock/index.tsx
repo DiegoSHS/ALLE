@@ -14,9 +14,10 @@ export function StockCard({ description, name, id }: Stock) {
         <Card onPress={onPress} isPressable shadow="sm" className="border-none">
             <CardBody className="overflow-visible p-0">
                 <Image
+                    isBlurred
                     className="w-full object-cover h-[140px]"
                     alt="Imagen de stock"
-                    src="/mujer.jpg"
+                    src="/mueble.jpg"
                     radius="lg"
                     shadow="sm"
                     width={200}
