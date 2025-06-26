@@ -6,4 +6,5 @@ export abstract class FranchiseBranchDatasource {
     abstract findAll(): Promise<FranchiseBranch[]>;
     abstract update(id: number, franchiseBranch: Partial<FranchiseBranch>): Promise<FranchiseBranch>;
     abstract delete(id: number): Promise<void>;
+    abstract createMany(franchiseBranches: FranchiseBranch[]): Promise<FranchiseBranch[]>;
 }

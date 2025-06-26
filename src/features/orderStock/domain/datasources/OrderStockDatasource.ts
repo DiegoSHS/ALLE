@@ -2,6 +2,7 @@ import { OrderStock } from "../entities/OrderStock";
 
 export abstract class OrderStockDatasource {
     abstract create(orderStock: OrderStock): Promise<OrderStock>;
+    abstract createMany(orderStocks: OrderStock[]): Promise<OrderStock[]>;
     abstract findById(id: number): Promise<OrderStock | null>;
     abstract findAll(): Promise<OrderStock[]>;
     abstract update(id: number, orderStock: Partial<OrderStock>): Promise<OrderStock>;
