@@ -10,6 +10,9 @@ export class ClientRepositoryImp extends ClientRepository {
     async create(client: Client): Promise<Client> {
         return this.datasource.create(client);
     }
+    async createMany(clients: Client[]): Promise<Client[]> {
+        return this.datasource.createMany(clients);
+    }
     async findById(id: number): Promise<Client | null> {
         return this.datasource.findById(id);
     }
