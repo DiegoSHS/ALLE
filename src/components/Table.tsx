@@ -1,11 +1,12 @@
+import { BaseItem } from "@/utils";
 import { Table as HeroTable, TableHeader, TableRow, TableCell, TableBody } from "@heroui/react";
 
-interface TableProps<T> {
+interface TableProps<T extends BaseItem> {
     data: T[];
     columns: { key: keyof T; label: string }[];
 }
 
-export const Table = <T,>({ data, columns }: TableProps<T>) => {
+export const Table = <T extends BaseItem>({ data, columns }: TableProps<T>) => {
     return (
         <HeroTable>
             <TableHeader>
@@ -15,14 +16,17 @@ export const Table = <T,>({ data, columns }: TableProps<T>) => {
                     ))}
                 </TableRow>
             </TableHeader>
-            <TableBody>
-                {data.map((row, rowIndex) => (
-                    <TableRow key={rowIndex}>
-                        {columns.map((column) => (
-                            <TableCell key={String(column.key)}>{String(row[column.key])}</TableCell>
-                        ))}
-                    </TableRow>
-                ))}
+            <TableBody items={data}>
+                {
+                    (row) => (
+                        <TableRow key={row.id}>
+                            {columns.map((column) => (
+                                <TableCell key={String(column.key)}>{String(row[column.key])}
+                                </TableCell>
+                            ))}
+                        </TableRow>
+                    )
+                }
             </TableBody>
         </HeroTable>
     );

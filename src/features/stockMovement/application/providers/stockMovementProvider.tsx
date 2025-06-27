@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 import { StockMovement } from "../../domain/entities/StockMovement";
-import { Action, BaseState, useBaseReducer } from "@/utils";
+import { Action, BaseState, useBaseReducer } from "../../../../utils";
 
 interface StockMovementContextType {
     state: BaseState<StockMovement>;

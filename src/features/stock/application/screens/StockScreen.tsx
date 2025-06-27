@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { Stock } from "../../domain/entities/Stock";
 
 const StockScreen = () => {
-    const { state: { items } } = useStock();
+    const { state: { items }, fetchStocks } = useStock();
 
     const columns: { key: keyof Stock; label: string }[] = [
         { key: "id", label: "ID" },
@@ -12,6 +12,10 @@ const StockScreen = () => {
         { key: "startDate", label: "Start Date" },
         { key: "endDate", label: "End Date" },
     ];
+
+    useEffect(() => {
+        fetchStocks();
+    }, [fetchStocks]);
 
     return (
         <div>

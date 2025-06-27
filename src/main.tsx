@@ -6,14 +6,17 @@ import App from "./App.tsx";
 import { Provider } from "./provider.tsx";
 import "@/styles/globals.css";
 import DefaultLayout from "./layouts/default.tsx";
+import { AppProviders } from "./providers.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider>
-        <DefaultLayout>
-          <App />
-        </DefaultLayout>
+        <AppProviders>
+          <DefaultLayout>
+            <App />
+          </DefaultLayout>
+        </AppProviders>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,

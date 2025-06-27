@@ -2,7 +2,7 @@ import { UserProvider } from "./features/user/application/providers/userProvider
 import { FranchiseBranchProvider } from "./features/franchiseBranch/application/providers/franchiseBranchProvider";
 import { StoreProvider } from "./features/store/application/providers/storeProvider";
 import { StockItemProvider } from "./features/stockItem/application/providers/stockItemProvider";
-import { InventoryMovementProvider } from "./features/inventoryMovement/application/providers/inventoryMovementProvider";
+import { StockMovementProvider } from "./features/stockMovement/application/providers/stockMovementProvider";
 import { ClientProvider } from "./features/client/application/providers/clientProvider";
 import { OrderProvider } from "./features/order/application/providers/orderProvider";
 import { OrderStockProvider } from "./features/orderStock/application/providers/orderStockProvider";
@@ -15,7 +15,7 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
                 <StoreProvider>
                     <StockProvider>
                         <StockItemProvider>
-                            <InventoryMovementProvider>
+                            <StockMovementProvider>
                                 <ClientProvider>
                                     <OrderProvider>
                                         <OrderStockProvider>
@@ -23,7 +23,7 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
                                         </OrderStockProvider>
                                     </OrderProvider>
                                 </ClientProvider>
-                            </InventoryMovementProvider>
+                            </StockMovementProvider>
                         </StockItemProvider>
                     </StockProvider>
                 </StoreProvider>

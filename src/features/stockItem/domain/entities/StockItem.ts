@@ -2,9 +2,10 @@ export interface StockItem {
     id: number;
     stockId: number;
     name: string;
+    price: number;
     publicPrice: number;
-    mayorPrice: number;
     quantity: number;
-    description?: string;
-    quantityBase: number;
+    currentQuantity: number;
+    discount: number;
+    image: string;
 }
